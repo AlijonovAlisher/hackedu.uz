@@ -116,16 +116,7 @@
                             <a href="https://www.instagram.com/exe.doston/"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
-                    <div class="team-member">
-                        <img src="2-teacher.png" alt="Mutaxassis rasmi">
-                        <h3>Muhammadali</h3>
-                        <p>2 - O'qituvchi </p>
-                        <div class="social-links">
-                            <a href="https://t.me/" target="_blank"><i class="fab fa-telegram"></i></a>
-                            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    </div>
+
             </div>
         </section>
 
@@ -133,7 +124,7 @@
             <div class="container">
                 <h2 class="section-title">Biz Bilan Bog'lanish</h2>
                 <div class="contact-content">
-                    <form class="contact-form">
+                    <form id="contactForm" class="contact-form">
                         <div class="form-group">
                             <label for="name">Ism Familiya</label>
                             <input type="text" id="name" name="name" required 
@@ -208,6 +199,73 @@
                 }
             });
         });
+        
+        const botToken = '8111010912:AAEXuNZ-YhthuCtLTwh4D133KK9iD_bVexA';
+  const chatIds = ['925918834', '7984884145']; // Ikkita chat ID
+
+  const form = document.querySelector('.contact-form');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = form.elements['name'].value;
+    const phone = form.elements['phone'].value || 'Ko\'rsatilmagan';
+    const message = form.elements['message'].value;
+
+    const text = `
+🆕 Yangi xabar!
+
+👤 Ism Familiya: ${name}
+📞 Telefon: ${phone}
+💬 Xabar: ${message}
+    `;
+
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+    // Har bir chat ID uchun xabar yuborish
+    Promise.all(chatIds.map(chatId => {
+      return fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text
+        })
+      });
+    }))
+    .then(responses => Promise.all(responses.map(r => r.json())))
+    .then(results => {
+      if (results.every(r => r.ok)) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Xabar yuborildi!',
+          text: 'Sizning xabaringiz bizga muvaffaqiyatli yetib bordi.',
+          confirmButtonText: 'Yopish',
+          confirmButtonColor: '#3085d6',
+        });
+        form.reset();
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Xatolik!',
+          text: 'Xabar yuborishda muammo yuz berdi.',
+        });
+        console.error(results);
+      }
+    })
+    .catch(error => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Xatolik!',
+        text: 'Internet yoki serverda muammo mavjud.',
+      });
+      console.error('Error:', error);
+    });
+  });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>
