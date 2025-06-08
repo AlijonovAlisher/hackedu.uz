@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackedu.uz - Kiberxavfsizlik Ta'lim Markazi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo"><a href="#home">HACKEDU.UZ</a></h1>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#home">Bosh Sahifa</a></li>
+                    <li><a href="#about">Biz Haqimizda</a></li>
+                    <li><a href="#courses">Kurslar</a></li>
+                    <li><a href="#team">Jamoa</a></li>
+                    <li><a href="#contact">Aloqa</a></li>
+                </ul>
+            </nav>
+            <div class="burger-menu" id="burgerMenu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="tagline">// Kiberxavfsizlikda yangi avlodni tayyorlash</p>
+                    <h2>HACKEDU.UZ bilan kiber-tahdidlarga qarshi turing.</h2>
+                    <p>Zamonaviy tahdidlarga qarshi kurashish uchun chuqur bilim va amaliy ko'nikmalarni egallang. Bizning mutaxassislar jamoasi sizni kiberdunyoning sirlariga o'rgatadi.</p>
+                    <a href="#courses" class="btn primary-btn">Kurslarimizni Ko'rish</a>
+                    <a href="#contact" class="btn secondary-btn">Biz bilan bog'lanish</a>
+                </div>
+                <div class="hero-image">
+                    <img src="logo.jpg" alt="Kiberxavfsizlik Illyustratsiyasi">
+                  </div>
+                  
+            </div>
+        </section>
+
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="about-content">
+                    <h3>Bizning Maqsadimiz</h3>
+                    <p>Hackedu.uz - O'zbekistonda kiberxavfsizlik sohasida yetakchi ta'lim markazi. Bizning missiyamiz - yosh mutaxassislarni va shu sohaga qiziquvchilarni kiber-tahdidlarga qarshi kurashishga qodir bilim va ko'nikmalar bilan qurollantirishdir.</p>
+                    <p>Biz doimiy ravishda o'z o'quv dasturlarimizni yangilab boramiz va bozor talablariga moslashtiramiz. Amaliy mashg'ulotlar, real holatlar va xalqaro standartlarga asoslangan ta'lim orqali sizga eng yaxshi tajribani taqdim etamiz.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span>60+</span>
+                        <p>Bitiruvchilar</p>
+                    </div>
+                    <div class="stat-item">
+                        <span>10+</span>
+                        <p>Soha Mutaxassislari</p>
+                    </div>
+                    <div class="stat-item">
+                        <span>5+</span>
+                        <p>Yillik Tajriba</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="courses" class="section courses-section">
+            <div class="container">
+              <h2 class="section-title">Bizning Kursimiz</h2>
+              <div class="course-card single-course">
+                <i class="fas fa-user-secret icon-large"></i>
+                <h4>Red Hat Campus – Pentester Kursi (8–10 oy)</h4>
+                <p>
+                  Jahon standartlariga mos tarzda ishlab chiqilgan “Red Hat” xavfsizlik kursi
+                  <strong>Capture-the-Flag (CTF)</strong> uslubidagi amaliy mashg‘ulotlar orqali
+                  <em>interaktiv va chuqur ta’lim</em>ni taqdim etadi.
+                </p>
+                <button class="read-more-btn" onclick="toggleDetails()">Batafsil &rarr;</button>
+                <div id="course-details" class="course-details">
+                  <p>
+                    Ushbu kurs orqali siz quyidagi bilim va ko‘nikmalarga ega bo‘lasiz:
+                  </p>
+                  <ul>
+                    <li>🛡️ Penetratsion test bosqichlari va vositalari</li>
+                    <li>💻 Linux va Windows tizimlarida ekspluatatsiya</li>
+                    <li>🌐 Web zaifliklarni aniqlash: XSS, SQLi, CSRF va boshqalar</li>
+                    <li>🧠 Real CTF (Capture The Flag) mashg‘ulotlarida qatnashish</li>
+                    <li>📜 Sertifikat olish imkoniyati</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          
+    
+          
+
+        <section id="team" class="section team-section">
+            <div class="container">
+                <h2 class="section-title">Bizning Jamoa</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="mean_teacher.png" alt="Ustoz rasmi">
+                        <h3>Doston Suyunov</h3>
+                        <p>Kiberxavfsizlik Bo'yicha Mutaxassis</p>
+                        <div class="social-links">
+                            <a href="https://t.me/hackedu_uz" target="_blank"><i class="fab fa-telegram"></i></a>
+                            <a href="https://www.instagram.com/exe.doston/"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="2-teacher.png" alt="Mutaxassis rasmi">
+                        <h3>Muhammadali</h3>
+                        <p>2 - O'qituvchi </p>
+                        <div class="social-links">
+                            <a href="https://t.me/" target="_blank"><i class="fab fa-telegram"></i></a>
+                            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <h2 class="section-title">Biz Bilan Bog'lanish</h2>
+                <div class="contact-content">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Ism Familiya</label>
+                            <input type="text" id="name" name="name" required 
+                                   pattern="[A-Za-zА-Яа-яЁёЎўҚқҒғҲҳЁёІіҒғʻʼ\s\-]+" 
+                                   title="Faqat harflar, bo'sh joy va chiziq (-) ishlatish mumkin">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Telefon raqami</label>
+                            <input type="tel" id="phone" name="phone" 
+                                   pattern="(\+998|998)?[0-9]{9}" 
+                                   placeholder="+998901234567">
+                        </div>
+                                               
+                        <div class="form-group">
+                            <label for="message">Xabar</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary-btn">Xabar Yuborish</button>
+                    </form>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Manzil: Zafar restarani ro'parasida "Empire it academy" ichida, Samarqand, O'zbekiston</p>
+                        <p><i class="fas fa-phone"></i> Telefon: <a href="tel:+998915346014">+998 (91) 534 6014</a></p>
+                        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:info@hackedu.uz">info@hackedu.uz</a></p>
+                    <div class="social-media">
+                            <a href="https://t.me/hackedu_uz" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+                            <a href="https://www.instagram.com/hackedu.uz/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Hackedu.uz. Barcha huquqlar himoyalangan.</p>
+            <div class="footer-links">
+                <a href="#">Maxfiylik Siyosati</a>
+                <a href="#">Foydalanish Shartlari</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+            function toggleDetails() {
+              const details = document.getElementById("course-details");
+              details.style.display = details.style.display === "block" ? "none" : "block";
+            }
+        
+          
+        document.getElementById('burgerMenu').addEventListener('click', function() {
+            document.querySelector('.nav ul').classList.toggle('active');
+            this.classList.toggle('open');
+        });
+
+        // Sayt ichidagi havolalarni bosganda silliq skroll qilish
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Mobil menyuni yopish
+                if (document.querySelector('.nav ul').classList.contains('active')) {
+                    document.querySelector('.nav ul').classList.remove('active');
+                    document.getElementById('burgerMenu').classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
