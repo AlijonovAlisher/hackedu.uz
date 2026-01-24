@@ -3,23 +3,749 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hackedu.uz - Kiberxavfsizlik Ta'lim Markazi</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="logo.jpg">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>HACKEDU.UZ | KIBERXAVFSIZLIK AKADEMIYASI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0a0a0a;
+            --primary-green: #00ff88;
+            --secondary-green: #00cc6a;
+            --accent-green: #00ffaa;
+            --neon-blue: #0088ff;
+            --neon-purple: #aa00ff;
+            --dark-gray: #1a1a1a;
+            --light-gray: #333;
+            --text-light: #e0e0e0;
+            --text-dark: #121212;
+            --glow: 0 0 20px rgba(0, 255, 136, 0.6);
+            --strong-glow: 0 0 35px rgba(0, 255, 136, 0.9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* HEADER */
+        .header {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-green);
+            box-shadow: var(--glow);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 2.8rem;
+            color: transparent;
+            text-decoration: none;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--primary-green), var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            position: relative;
+            text-shadow: 0 0 25px rgba(0, 255, 136, 0.7);
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-green), var(--neon-blue), var(--neon-purple));
+            border-radius: 3px;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav ul li a:hover {
+            color: var(--primary-green);
+            text-shadow: var(--glow);
+            transform: translateY(-3px);
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .burger-menu .bar {
+            width: 30px;
+            height: 3px;
+            background: var(--primary-green);
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.4s;
+            box-shadow: var(--glow);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 200px 0 150px;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 255, 136, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 136, 255, 0.1) 0%, transparent 40%),
+                linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="2" height="2" fill="rgba(0,255,136,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tagline {
+            color: transparent;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, var(--primary-green), var(--neon-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            display: inline-block;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .tagline::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--primary-green);
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, var(--primary-green), #fff, var(--primary-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            color: #ccc;
+            line-height: 1.8;
+            max-width: 700px;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: var(--text-dark);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.6);
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+            box-shadow: inset 0 0 20px rgba(0, 255, 136, 0.1);
+        }
+
+        .secondary-btn:hover {
+            background: rgba(0, 255, 136, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 80px;
+            color: transparent;
+            background: linear-gradient(45deg, var(--primary-green), var(--neon-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-green), var(--neon-blue));
+            margin: 25px auto;
+            border-radius: 5px;
+            box-shadow: var(--glow);
+        }
+
+        /* ABOUT SECTION */
+        .about-content {
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto 90px;
+        }
+
+        .about-content h3 {
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            color: var(--primary-green);
+            text-shadow: var(--glow);
+        }
+
+        .about-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            line-height: 1.9;
+            padding: 0 20px;
+        }
+
+        .about-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: linear-gradient(145deg, #151515, #0a0a0a);
+            border-radius: 15px;
+            border: 2px solid var(--primary-green);
+            transition: all 0.3s ease;
+            min-width: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--glow);
+            border-color: var(--accent-green);
+        }
+
+        .stat-item span {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            text-shadow: var(--glow);
+        }
+
+        .stat-item p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* COURSES SECTION */
+        .courses-section {
+            background: linear-gradient(180deg, var(--dark-gray) 0%, #111 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card {
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px;
+            border: 2px solid var(--primary-green);
+            max-width: 1100px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover {
+            box-shadow: var(--glow);
+            border-color: var(--accent-green);
+            transform: translateY(-5px);
+        }
+
+        .icon-large {
+            font-size: 4rem;
+            color: var(--primary-green);
+            margin-bottom: 30px;
+            display: block;
+            text-shadow: var(--glow);
+        }
+
+        .course-card h4 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--text-light);
+            line-height: 1.3;
+        }
+
+        .course-card p {
+            font-size: 1.3rem;
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        .read-more-btn {
+            background: transparent;
+            border: 2px solid var(--primary-green);
+            color: var(--primary-green);
+            padding: 15px 35px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .read-more-btn:hover {
+            background: var(--primary-green);
+            color: var(--text-dark);
+            box-shadow: var(--glow);
+        }
+
+        .course-details {
+            margin-top: 40px;
+            padding: 35px;
+            background: rgba(0, 255, 136, 0.05);
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-green);
+        }
+
+        .course-details ul {
+            list-style: none;
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .course-details li {
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            position: relative;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .course-details li:hover {
+            background: rgba(0, 255, 136, 0.1);
+            transform: translateX(5px);
+        }
+
+        /* TEAM SECTION */
+        .team-section {
+            position: relative;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .team-member {
+            background: linear-gradient(145deg, #151515, #0a0a0a);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 2px solid var(--primary-green);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .team-member:hover {
+            transform: scale(1.05);
+            box-shadow: var(--strong-glow);
+            border-color: var(--accent-green);
+        }
+
+        .team-member img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border: 3px solid var(--primary-green);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover img {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 50px rgba(0, 255, 136, 0.6);
+        }
+
+        .team-member h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary-green);
+        }
+
+        .team-member p {
+            color: #aaa;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 50%;
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-green);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-green);
+            color: var(--text-dark);
+            transform: translateY(-5px);
+            box-shadow: var(--glow);
+        }
+
+        /* CONTACT SECTION - YANGILANDI */
+        .contact-section {
+            background: linear-gradient(180deg, #0a0a0a 0%, #000 100%);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 20px;
+            border: 2px solid var(--primary-green);
+        }
+
+        .form-group {
+            margin-bottom: 35px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: var(--primary-green);
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: var(--glow);
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .contact-info {
+            padding: 40px;
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 2px solid var(--primary-green);
+        }
+
+        .contact-info-item {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+            position: relative;
+        }
+
+        .contact-info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .contact-info-item i {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+            display: block;
+            text-shadow: var(--glow);
+        }
+
+        .contact-info-item strong {
+            display: block;
+            font-size: 1.4rem;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .contact-info-item p,
+        .contact-info-item a {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .contact-info-item a:hover {
+            color: var(--primary-green);
+            text-shadow: var(--glow);
+            transform: translateX(10px);
+        }
+
+        .contact-info-item .address-details {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-top: 15px;
+            line-height: 1.7;
+            padding-left: 10px;
+            border-left: 3px solid var(--primary-green);
+        }
+
+        .social-media {
+            display: flex;
+            gap: 25px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+
+        .social-media a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 50%;
+            color: var(--primary-green);
+            font-size: 2.2rem;
+            transition: all 0.3s ease;
+            border: 3px solid var(--primary-green);
+        }
+
+        .social-media a:hover {
+            background: var(--primary-green);
+            color: var(--text-dark);
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: var(--strong-glow);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .hero h1 { font-size: 3.5rem; }
+            .section-title { font-size: 2.8rem; }
+            .contact-content { gap: 50px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav ul {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(20px);
+                padding: 30px;
+                gap: 20px;
+                z-index: 1000;
+            }
+
+            .nav ul.active {
+                display: flex;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .burger-menu.open .bar:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .burger-menu.open .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .burger-menu.open .bar:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .hero { padding: 150px 0 100px; }
+            .hero h1 { font-size: 2.8rem; }
+            .btn-container { flex-direction: column; }
+            .contact-content { grid-template-columns: 1fr; }
+            .about-stats { gap: 30px; }
+            .team-grid { grid-template-columns: 1fr; }
+            .contact-info-item strong { font-size: 1.3rem; }
+            .contact-info-item p, 
+            .contact-info-item a { font-size: 1.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.2rem; }
+            .section-title { font-size: 2.2rem; }
+            .course-card { padding: 40px 25px; }
+            .contact-form, .contact-info { padding: 30px; }
+            .social-media a { width: 60px; height: 60px; font-size: 1.8rem; }
+        }
+    </style>
 </head>
 <body>
+    <!-- HEADER -->
     <header class="header">
         <div class="container">
-            <h1 class="logo"><a href="#home">HACKEDU.UZ</a></h1>
+            <a href="#home" class="logo"><img src="logo2.jpg" alt="HACKEDU.UZ"></a>
             <nav class="nav">
                 <ul>
-                    <li><a href="#home">Bosh Sahifa</a></li>
-                    <li><a href="#about">Biz Haqimizda</a></li>
-                    <li><a href="#courses">Kurslar</a></li>
-                    <li><a href="#team">Jamoa</a></li>
-                    <li><a href="#contact">Aloqa</a></li>
+                    <li><a href="#home">BOSH SAHIFA</a></li>
+                    <li><a href="#about">BIZ HAQIMIZDA</a></li>
+                    <li><a href="#courses">KURSLAR</a></li>
+                    <li><a href="#team">JAMOA</a></li>
+                    <li><a href="#contact">ALOQA</a></li>
                 </ul>
             </nav>
             <div class="burger-menu" id="burgerMenu">
@@ -30,253 +756,320 @@
         </div>
     </header>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <p class="tagline">// Kiberxavfsizlikda yangi avlodni tayyorlash</p>
-                    <h2>HACKEDU.UZ bilan kiber-tahdidlarga qarshi turing.</h2>
-                    <p>Zamonaviy tahdidlarga qarshi kurashish uchun chuqur bilim va amaliy ko'nikmalarni egallang. Bizning mutaxassislar jamoasi sizni kiberdunyoning sirlariga o'rgatadi.</p>
-                    <a href="#courses" class="btn primary-btn">Kurslarimizni Ko'rish</a>
-                    <a href="#contact" class="btn secondary-btn">Biz bilan bog'lanish</a>
-                </div>
-                <div class="hero-image">
-                    <img src="logo.jpg" alt="Kiberxavfsizlik Illyustratsiyasi">
-                  </div>
-                  
-            </div>
-        </section>
-
-        <section id="about" class="section about-section">
-            <div class="container">
-                <div class="about-content">
-                    <h3>Bizning Maqsadimiz</h3>
-                    <p>Hackedu.uz - O'zbekistonda kiberxavfsizlik sohasida yetakchi ta'lim markazi. Bizning missiyamiz - yosh mutaxassislarni va shu sohaga qiziquvchilarni kiber-tahdidlarga qarshi kurashishga qodir bilim va ko'nikmalar bilan qurollantirishdir.</p>
-                    <p>Biz doimiy ravishda o'z o'quv dasturlarimizni yangilab boramiz va bozor talablariga moslashtiramiz. Amaliy mashg'ulotlar, real holatlar va xalqaro standartlarga asoslangan ta'lim orqali sizga eng yaxshi tajribani taqdim etamiz.</p>
-                </div>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <span>60+</span>
-                        <p>Bitiruvchilar</p>
-                    </div>
-                    <div class="stat-item">
-                        <span>10+</span>
-                        <p>Soha Mutaxassislari</p>
-                    </div>
-                    <div class="stat-item">
-                        <span>5+</span>
-                        <p>Yillik Tajriba</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="courses" class="section courses-section">
-            <div class="container">
-              <h2 class="section-title">Bizning Kursimiz</h2>
-              <div class="course-card single-course">
-                <i class="fas fa-user-secret icon-large"></i>
-                <h4>Red Hat Campus – Pentester Kursi (8–10 oy)</h4>
-                <p>
-                  Jahon standartlariga mos tarzda ishlab chiqilgan “Red Hat” xavfsizlik kursi
-                  <strong>Capture-the-Flag (CTF)</strong> uslubidagi amaliy mashg‘ulotlar orqali
-                  <em>interaktiv va chuqur ta’lim</em>ni taqdim etadi.
-                </p>
-                <button class="read-more-btn" onclick="toggleDetails()">Batafsil &rarr;</button>
-                <div id="course-details" class="course-details">
-                  <p>
-                    Ushbu kurs orqali siz quyidagi bilim va ko‘nikmalarga ega bo‘lasiz:
-                  </p>
-                  <ul>
-                    <li>🛡️ Penetratsion test bosqichlari va vositalari</li>
-                    <li>💻 Linux va Windows tizimlarida ekspluatatsiya</li>
-                    <li>🌐 Web zaifliklarni aniqlash: XSS, SQLi, CSRF va boshqalar</li>
-                    <li>🧠 Real CTF (Capture The Flag) mashg‘ulotlarida qatnashish</li>
-                    <li>📜 Sertifikat olish imkoniyati</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </section>
-          
-          
-    
-          
-
-        <section id="team" class="section team-section">
-            <div class="container">
-                <h2 class="section-title">Bizning Jamoa</h2>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <img src="mean_teacher.png" alt="Ustoz rasmi">
-                        <h3>Doston Suyunov</h3>
-                        <p>Kiberxavfsizlik Bo'yicha Mutaxassis</p>
-                        <div class="social-links">
-                            <a href="https://t.me/hackedu_uz" target="_blank"><i class="fab fa-telegram"></i></a>
-                            <a href="https://www.instagram.com/exe.doston/"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                <div class="team-member">
-                        <img src="teacher.jpg" alt="Ustoz rasmi">
-                        <h3>Akobir Orifov</h3>
-                        <p>Kiberxavfsizlik Bo'yicha Mutaxassis, Pentester</p>
-                        <div class="social-links">
-                            <a href="https://t.me/@akobir0108" target="_blank"><i class="fab fa-telegram"></i></a>
-                            <a href="https://www.instagram.com/pentester_uz/"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-
-            </div>
-        </section>
-
-        <section id="contact" class="section contact-section">
-            <div class="container">
-                <h2 class="section-title">Biz Bilan Bog'lanish</h2>
-                <div class="contact-content">
-                    <form id="contactForm" class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Ism Familiya</label>
-                            <input type="text" id="name" name="name" required 
-                                   pattern="[A-Za-zА-Яа-яЁёЎўҚқҒғҲҳЁёІіҒғʻʼ\s\-]+" 
-                                   title="Faqat harflar, bo'sh joy va chiziq (-) ishlatish mumkin">
-                        </div>
-                        
-                        <div class="form-group">
-                                <label for="phone">Telefon raqami</label>
-                                <input type="tel" id="phone" name="phone" 
-                                   pattern="(\+998|998)?[0-9]{9}" 
-                                   placeholder="+998901234567"
-                                   required>
-                        </div>
-
-                                               
-                        <div class="form-group">
-                            <label for="message">Xabar</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn primary-btn">Xabar Yuborish</button>
-                    </form>
-                    <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt"></i> Manzil: Zafar restarani ro'parasida "Empire it academy" ichida, Samarqand, O'zbekiston</p>
-                        <p><i class="fas fa-phone"></i> Telefon: <a href="tel:+998950046675">+998 (95) 004 66 75</a></p>
-                        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:info@hackedu.uz">info@hackedu.uz</a></p>
-                    <div class="social-media">
-                            <a href="https://t.me/hackedu_uz" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-                            <a href="https://www.instagram.com/hackedu.uz/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
         <div class="container">
-            <p>&copy; 2025 Hackedu.uz. Barcha huquqlar himoyalangan.</p>
-            <div class="footer-links">
-                <a href="#">Maxfiylik Siyosati</a>
-                <a href="#">Foydalanish Shartlari</a>
+            <div class="hero-content">
+                <p class="tagline">KIBERXAVFSIZLIKDA YANGI AVLODNI TAYYORLASH</p>
+                <h1>KIBERXAVFSIZLIKDA PROFESSIONAL DARAJAGA CHIQING</h1>
+                <p>Zamonaviy tahdidlarga qarshi kurashish uchun chuqur bilim va amaliy ko'nikmalarni egallang. Bizning mutaxassislar jamoasi sizni kiberdunyoning sirlariga o'rgatadi.</p>
+                <div class="btn-container">
+                    <a href="#courses" class="btn primary-btn">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>KURSLARNI KO'RISH</span>
+                    </a>
+                    <a href="#contact" class="btn secondary-btn">
+                        <i class="fas fa-comments"></i>
+                        <span>BOG'LANISH</span>
+                    </a>
+                </div>
             </div>
         </div>
-    </footer>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <h2 class="section-title">BIZ HAQIMIZDA</h2>
+            <div class="about-content">
+                <h3>KIBERKOSOSDA DOMINATORLAR YETISHTIRAMIZ</h3>
+                <p><strong>Hackedu.uz</strong> - Samarqandda kiberxavfsizlik sohasida yetakchi ta'lim markazi. Bizning missiyamiz - yosh mutaxassislarni va shu sohaga qiziquvchilarni kiber-tahdidlarga qarshi kurashishga qodir bilim va ko'nikmalar bilan qurollantirish.</p>
+                <p>Biz doimiy ravishda o'z o'quv dasturlarimizni yangilab boramiz va bozor talablariga moslashtiramiz. Amaliy mashg'ulotlar, real CTF musobaqalari va xalqaro standartlarga asoslangan ta'lim orqali sizga eng yaxshi tajribani taqdim etamiz.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-item">
+                    <span>100+</span>
+                    <p>BITIRUVCHILAR</p>
+                </div>
+                <div class="stat-item">
+                    <span>10+</span>
+                    <p>SOHA MUTAXASSISLARI</p>
+                </div>
+                <div class="stat-item">
+                    <span>4+</span>
+                    <p>YILLIK TAJRIBA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COURSES SECTION -->
+    <section id="courses" class="section courses-section">
+        <div class="container">
+            <h2 class="section-title">BIZNING KURS</h2>
+            <div class="course-card">
+                <i class="fas fa-user-secret icon-large"></i>
+                <h4>RED HAT CAMPUS – PENTESTER KURSI (8–10 oy)</h4>
+                <p>Jahon standartlariga mos tarzda ishlab chiqilgan "Red Hat" xavfsizlik kursi <strong>Capture-the-Flag (CTF)</strong> uslubidagi amaliy mashg'ulotlar orqali <em>interaktiv va chuqur ta'lim</em>ni taqdim etadi.</p>
+                <button class="read-more-btn" onclick="toggleDetails()">
+                    <i class="fas fa-chevron-down"></i>
+                    <span>BATAFSIL MA'LUMOT</span>
+                </button>
+                <div id="course-details" class="course-details" style="display: none;">
+                    <p>Ushbu kurs orqali siz quyidagi bilim va ko'nikmalarga ega bo'lasiz:</p>
+                    <ul>
+                        <li><i class="fas fa-shield-alt"></i> Penetratsion test bosqichlari va vositalari</li>
+                        <li><i class="fas fa-desktop"></i> Linux va Windows tizimlarida ekspluatatsiya</li>
+                        <li><i class="fas fa-globe"></i> Web zaifliklarni aniqlash: XSS, SQLi, CSRF</li>
+                        <li><i class="fas fa-network-wired"></i> Tarmoq xavfsizligi va monitoring</li>
+                        <li><i class="fas fa-flag"></i> Real CTF (Capture The Flag) mashg'ulotlari</li>
+                        <li><i class="fas fa-certificate"></i> Sertifikat olish imkoniyati</li>
+                        <li><i class="fas fa-briefcase"></i> Ish bilan ta'minlashda yordam</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section id="team" class="section team-section">
+        <div class="container">
+            <h2 class="section-title">BIZNING JAMOA</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="mean_teacher.png" alt="Doston Suyunov">
+                    <h3>DOSTON SUYUNOV</h3>
+                    <p>Kiberxavfsizlik Mutaxassisi</p>
+                    <div class="social-links">
+                        <a href="https://t.me/hackedu_uz" target="_blank"><i class="fab fa-telegram"></i></a>
+                        <a href="https://www.instagram.com/hackedu_uz/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="teacher.jpg" alt="Akobir Orifov">
+                    <h3>AKOBIR ORIFOV</h3>
+                    <p>Pentester & Security Researcher</p>
+                    <div class="social-links">
+                        <a href="https://t.me/akobir0108" target="_blank"><i class="fab fa-telegram"></i></a>
+                        <a href="https://www.instagram.com/pentester_uz/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION - YANGILANDI -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title">ALOQA</h2>
+            <div class="contact-content">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">ISM FAMILIYA</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">TELEFON RAQAMI</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+998901234567" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">XABAR</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary-btn" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>XABAR YUBORISH</span>
+                    </button>
+                </form>
+                
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <strong>MANZIL</strong>
+                        <p>Zafar restarani ro'parasida "Hackedu.uz" o'quv markazi, Samarqand, O'zbekiston</p>
+                        <div class="address-details">
+                            Asosiy kampus: New Arbat binosi padvali<br>
+                            Ish vaqti: Dushanba-Shanba, 9:00 - 20:00
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <i class="fas fa-phone"></i>
+                        <strong>TELEFON</strong>
+                        <a href="tel:+998958429088">+998 (95) 842 90 88</a>
+                        <div class="address-details">
+                            Qo'ng'iroq vaqti: 9:00 - 20:00<br>
+                            Telegram orqali ham bog'lanishingiz mumkin
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <i class="fas fa-envelope"></i>
+                        <strong>EMAIL</strong>
+                        <a href="mailto:info@hackedu.uz">info@hackedu.uz</a>
+                        <div class="address-details">
+                            Kurslar haqida ma'lumot<br>
+                            Hamkorlik takliflari<br>
+                            Qo'llab-quvvatlash
+                        </div>
+                    </div>
+                    
+                    <div class="social-media">
+                        <a href="https://t.me/hackeduuz" target="_blank" title="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://www.instagram.com/hackedu.uz/" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script>
+        // Mobile menu toggle
+        const burgerMenu = document.getElementById('burgerMenu');
+        const navMenu = document.querySelector('.nav ul');
         
-            function toggleDetails() {
-              const details = document.getElementById("course-details");
-              details.style.display = details.style.display === "block" ? "none" : "block";
-            }
-        
-          
-        document.getElementById('burgerMenu').addEventListener('click', function() {
-            document.querySelector('.nav ul').classList.toggle('active');
+        burgerMenu.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
             this.classList.toggle('open');
         });
 
-        // Sayt ichidagi havolalarni bosganda silliq skroll qilish
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-
-                // Mobil menyuni yopish
-                if (document.querySelector('.nav ul').classList.contains('active')) {
-                    document.querySelector('.nav ul').classList.remove('active');
-                    document.getElementById('burgerMenu').classList.remove('open');
+                
+                // Close mobile menu
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    burgerMenu.classList.remove('open');
+                }
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#home') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const offset = 80;
+                        const targetPosition = targetElement.offsetTop - offset;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             });
         });
-        
+
+        // Course details toggle
+        function toggleDetails() {
+            const details = document.getElementById("course-details");
+            const isVisible = details.style.display === "block";
+            details.style.display = isVisible ? "none" : "block";
+            
+            const btn = document.querySelector('.read-more-btn');
+            const icon = btn.querySelector('i');
+            const text = btn.querySelector('span');
+            
+            if (isVisible) {
+                icon.className = 'fas fa-chevron-down';
+                text.textContent = "BATAFSIL MA'LUMOT";
+            } else {
+                icon.className = 'fas fa-chevron-up';
+                text.textContent = "YOPISH";
+            }
+        }
+
+        // Form submission with Telegram bot
         const botToken = '8111010912:AAEXuNZ-YhthuCtLTwh4D133KK9iD_bVexA';
-  const chatIds = ['7984884145','6995314590']; // Ikkita chat ID
-
-  const form = document.querySelector('.contact-form');
-
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const name = form.elements['name'].value;
-    const phone = form.elements['phone'].value || 'Ko\'rsatilmagan';
-    const message = form.elements['message'].value;
-
-    const text = `
-🆕 Yangi xabar!
-
-👤 Ism Familiya: ${name}
-📞 Telefon: ${phone}
-💬 Xabar: ${message}
-    `;
-
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
-    // Har bir chat ID uchun xabar yuborish
-    Promise.all(chatIds.map(chatId => {
-      return fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: text
-        })
-      });
-    }))
-    .then(responses => Promise.all(responses.map(r => r.json())))
-    .then(results => {
-      if (results.every(r => r.ok)) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Xabar yuborildi!',
-          text: 'Sizning xabaringiz bizga muvaffaqiyatli yetib bordi.',
-          confirmButtonText: 'Yopish',
-          confirmButtonColor: '#3085d6',
+        const chatIds = ['7984884145', '6995314590'];
+        
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            const text = `🆕 HACKEDU.UZ - YANGI XABAR!\n\n👤 Ism: ${name}\n📞 Telefon: ${phone}\n💬 Xabar: ${message}\n\n⏰ Vaqt: ${new Date().toLocaleString()}`;
+            
+            // Create loading effect
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span> YUBORILMOQDA...</span>';
+            submitBtn.disabled = true;
+            
+            // Send to all chat IDs
+            const promises = chatIds.map(chatId => {
+                return fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        chat_id: chatId, 
+                        text: text,
+                        parse_mode: 'HTML'
+                    })
+                });
+            });
+            
+            Promise.all(promises)
+                .then(responses => Promise.all(responses.map(r => r.json())))
+                .then(results => {
+                    if (results.every(r => r.ok)) {
+                        // Success animation
+                        submitBtn.innerHTML = '<i class="fas fa-check"></i><span> YUBORILDI!</span>';
+                        submitBtn.style.background = 'linear-gradient(135deg, #00cc6a, #00ff88)';
+                        
+                        // Show success message
+                        setTimeout(() => {
+                            alert('✅ Xabar muvaffaqiyatli yuborildi! Tez orada siz bilan bog\'lanamiz.');
+                            document.getElementById('contactForm').reset();
+                            submitBtn.innerHTML = originalContent;
+                            submitBtn.style.background = '';
+                            submitBtn.disabled = false;
+                        }, 1000);
+                    } else {
+                        submitBtn.innerHTML = originalContent;
+                        submitBtn.disabled = false;
+                        alert('❌ Xatolik yuz berdi. Iltimos, qayta urinib ko\'ring.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    submitBtn.innerHTML = originalContent;
+                    submitBtn.disabled = false;
+                    alert('🌐 Internet aloqasini tekshiring yoki qayta urinib ko\'ring.');
+                });
         });
-        form.reset();
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Xatolik!',
-          text: 'Xabar yuborishda muammo yuz berdi.',
+
+        // Add typing animation to hero
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroTitle = document.querySelector('.hero h1');
+            const originalText = heroTitle.innerHTML;
+            
+            // Reset for animation
+            heroTitle.innerHTML = '';
+            
+            let charIndex = 0;
+            function typeWriter() {
+                if (charIndex < originalText.length) {
+                    heroTitle.innerHTML += originalText.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+            
+            // Start typing after a short delay
+            setTimeout(typeWriter, 500);
         });
-        console.error(results);
-      }
-    })
-    .catch(error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Xatolik!',
-        text: 'Internet yoki serverda muammo mavjud.',
-      });
-      console.error('Error:', error);
-    });
-  });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </body>
 </html>
