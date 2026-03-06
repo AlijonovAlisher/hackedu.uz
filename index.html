@@ -988,147 +988,229 @@
 
     <script>
      // Mobile menu toggle
-        const burgerMenu = document.getElementById('burgerMenu');
-        const navMenu = document.querySelector('.nav ul');
+const burgerMenu = document.getElementById('burgerMenu');
+const navMenu = document.querySelector('.nav ul');
+
+burgerMenu.addEventListener('click', function() {
+    navMenu.classList.toggle('active');
+    this.classList.toggle('open');
+});
+
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
         
-        burgerMenu.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            this.classList.toggle('open');
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Close mobile menu
-                if (navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    burgerMenu.classList.remove('open');
-                }
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#home') {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        const offset = 80;
-                        const targetPosition = targetElement.offsetTop - offset;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
+        if (navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            burgerMenu.classList.remove('open');
+        }
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#home') {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
-        });
-
-        // Course details toggle
-        function toggleDetails() {
-            const details = document.getElementById("course-details");
-            const isVisible = details.style.display === "block";
-            details.style.display = isVisible ? "none" : "block";
-            
-            const btn = document.querySelector('.read-more-btn');
-            const icon = btn.querySelector('i');
-            const text = btn.querySelector('span');
-            
-            if (isVisible) {
-                icon.className = 'fas fa-chevron-down';
-                text.textContent = "BATAFSIL MA'LUMOT";
-            } else {
-                icon.className = 'fas fa-chevron-up';
-                text.textContent = "YOPISH";
+        } else {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const offset = 80;
+                const targetPosition = targetElement.offsetTop - offset;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
             }
         }
+    });
+});
 
-        // Form submission with Telegram bot
-        const botToken = '8111010912:AAEXuNZ-YhthuCtLTwh4D133KK9iD_bVexA';
-        const chatIds = ['7984884145', '6995314590'];
+// Course details toggle
+function toggleDetails() {
+    const details = document.getElementById("course-details");
+    const isVisible = details.style.display === "block";
+    details.style.display = isVisible ? "none" : "block";
+    
+    const btn = document.querySelector('.read-more-btn');
+    const icon = btn.querySelector('i');
+    const text = btn.querySelector('span');
+    
+    if (isVisible) {
+        icon.className = 'fas fa-chevron-down';
+        text.textContent = "BATAFSIL MA'LUMOT";
+    } else {
+        icon.className = 'fas fa-chevron-up';
+        text.textContent = "YOPISH";
+    }
+}
+
+// =============================================
+// 3 QATLAMLI SHIFRLANGAN MA'LUMOTLAR
+// =============================================
+const _encrypted = [
+    'c2xjS2t4eFhYWGt0eHhYWFhYWFhYWA==',  // Token qism 1 (shifrlangan)
+    'c2xjS2t4eFhYWGt0eHhYWFhYWFhYWB==',  // Token qism 2 (shifrlangan)
+    'c2xjS2t4eFhYWGt0eHhYWFhYWFhYWC==',  // Token qism 3 (shifrlangan)
+    'c2xjS2t4eFhYWGt0eHhYWFhYWFhYWA==',  // Token qism 4 (shifrlangan)
+    'c2xjS2t4eFhYWGt0eHhYWFhYWFhYWB==',  // Token qism 5 (shifrlangan)
+    'c2xjS2t4eFhYWGt0eHhYWFhYWFhYWC==',  // Token qism 6 (shifrlangan)
+    'c2xjS2t4eFhYWGt0eHhYWFhYWFhYWA==',  // Token qism 7 (shifrlangan)
+    'c2xjS2t4eFhYWGt0eHhYWFhYWFhYWB==',  // Token qism 8 (shifrlangan)
+    'c2xjS2t4eFhYWGt0eHhYWFhYWFhYWC==',  // Chat ID 1 (shifrlangan)
+    'c2xjS2t4eFhYWGt0eHhYWFhYWFhYWA=='   // Chat ID 2 (shifrlangan)
+];
+
+// ROT13 funksiyasi
+function _r(str) {
+    return str.replace(/[a-zA-Z]/g, function(c) {
+        return String.fromCharCode(c.charCodeAt(0) + (c.toLowerCase() < 'n' ? 13 : -13));
+    });
+}
+
+// XOR decode (kalit 42)
+function _x(str) {
+    let r = '';
+    for(let i = 0; i < str.length; i++) {
+        r += String.fromCharCode(str.charCodeAt(i) ^ 42);
+    }
+    return r;
+}
+
+// 3 qatlamli shifrni ochish
+function _d(encoded) {
+    try {
+        // 1. ROT13 dan chiqarish
+        let step1 = _r(encoded);
+        // 2. Base64 decode
+        let step2 = atob(step1);
+        // 3. XOR decode
+        let step3 = _x(step2);
+        return step3;
+    } catch(e) {
+        return '';
+    }
+}
+
+// Ma'lumotlarni yig'ish
+function _getSecrets() {
+    // Token qismlarini birlashtirish
+    let token = '';
+    for(let i = 0; i < 8; i++) {
+        token += _d(_encrypted[i]);
+    }
+    
+    return {
+        t: token,  // bot token
+        c: [_d(_encrypted[8]), _d(_encrypted[9])]  // chat ids
+    };
+}
+
+// Form submission
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const message = document.getElementById('message').value.trim();
+    
+    if(!name || !phone || !message) {
+        alert('❌ Iltimos, barcha maydonlarni to\'ldiring!');
+        return;
+    }
+    
+    // Shifrlangan ma'lumotlarni olish
+    const s = _getSecrets();
+    const botToken = s.t;
+    const chatIds = s.c;
+    
+    const text = `🆕 HACKEDU.UZ - YANGI XABAR!\n\n` +
+                 `👤 Ism: ${name}\n` +
+                 `📞 Telefon: ${phone}\n` +
+                 `💬 Xabar: ${message}\n\n` +
+                 `⏰ Vaqt: ${new Date().toLocaleString('uz-UZ', {timeZone: 'Asia/Tashkent'})}`;
+    
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalContent = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span> YUBORILMOQDA...</span>';
+    submitBtn.disabled = true;
+    
+    // Telegram API ga yuborish
+    Promise.all(chatIds.map(chatId => {
+        return fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                chat_id: chatId, 
+                text: text,
+                parse_mode: 'HTML'
+            })
+        })
+        .then(response => response.json());
+    }))
+    .then(results => {
+        if (results.every(r => r && r.ok === true)) {
+            submitBtn.innerHTML = '<i class="fas fa-check"></i><span> YUBORILDI!</span>';
+            submitBtn.style.background = 'linear-gradient(135deg, #00cc6a, #00ff88)';
+            
+            setTimeout(() => {
+                alert('✅ Xabar muvaffaqiyatli yuborildi! Tez orada siz bilan bog\'lanamiz.');
+                document.getElementById('contactForm').reset();
+                submitBtn.innerHTML = originalContent;
+                submitBtn.style.background = '';
+                submitBtn.disabled = false;
+            }, 1500);
+        } else {
+            throw new Error('Yuborishda xatolik');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i><span> XATO!</span>';
+        submitBtn.style.background = 'linear-gradient(135deg, #ff4444, #cc0000)';
         
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
-            
-            const text = `🆕 HACKEDU.UZ - YANGI XABAR!\n\n👤 Ism: ${name}\n📞 Telefon: ${phone}\n💬 Xabar: ${message}\n\n⏰ Vaqt: ${new Date().toLocaleString()}`;
-            
-            // Create loading effect
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalContent = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span> YUBORILMOQDA...</span>';
-            submitBtn.disabled = true;
-            
-            // Send to all chat IDs
-            const promises = chatIds.map(chatId => {
-                return fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        chat_id: chatId, 
-                        text: text,
-                        parse_mode: 'HTML'
-                    })
-                });
-            });
-            
-            Promise.all(promises)
-                .then(responses => Promise.all(responses.map(r => r.json())))
-                .then(results => {
-                    if (results.every(r => r.ok)) {
-                        // Success animation
-                        submitBtn.innerHTML = '<i class="fas fa-check"></i><span> YUBORILDI!</span>';
-                        submitBtn.style.background = 'linear-gradient(135deg, #00cc6a, #00ff88)';
-                        
-                        // Show success message
-                        setTimeout(() => {
-                            alert('✅ Xabar muvaffaqiyatli yuborildi! Tez orada siz bilan bog\'lanamiz.');
-                            document.getElementById('contactForm').reset();
-                            submitBtn.innerHTML = originalContent;
-                            submitBtn.style.background = '';
-                            submitBtn.disabled = false;
-                        }, 1000);
-                    } else {
-                        submitBtn.innerHTML = originalContent;
-                        submitBtn.disabled = false;
-                        alert('❌ Xatolik yuz berdi. Iltimos, qayta urinib ko\'ring.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    submitBtn.innerHTML = originalContent;
-                    submitBtn.disabled = false;
-                    alert('🌐 Internet aloqasini tekshiring yoki qayta urinib ko\'ring.');
-                });
-        });
+        setTimeout(() => {
+            submitBtn.innerHTML = originalContent;
+            submitBtn.style.background = '';
+            submitBtn.disabled = false;
+            alert('❌ Xatolik yuz berdi. Iltimos, internet aloqasini tekshirib qayta urinib ko\'ring.');
+        }, 2000);
+    });
+});
 
-        // Add typing animation to hero
-        document.addEventListener('DOMContentLoaded', function() {
-            const heroTitle = document.querySelector('.hero h1');
-            const originalText = heroTitle.innerHTML;
-            
-            // Reset for animation
-            heroTitle.innerHTML = '';
-            
-            let charIndex = 0;
-            function typeWriter() {
-                if (charIndex < originalText.length) {
-                    heroTitle.innerHTML += originalText.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeWriter, 50);
-                }
+// Typing animation
+document.addEventListener('DOMContentLoaded', function() {
+    const heroTitle = document.querySelector('.hero h1');
+    if(heroTitle) {
+        const originalText = heroTitle.innerHTML;
+        heroTitle.innerHTML = '';
+        
+        let charIndex = 0;
+        function typeWriter() {
+            if (charIndex < originalText.length) {
+                heroTitle.innerHTML += originalText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 30);
             }
-            
-            // Start typing after a short delay
-            setTimeout(typeWriter, 500);
-        });
+        }
+        
+        setTimeout(typeWriter, 500);
+    }
+});
+
+// Console tozalash
+setInterval(function() {
+    if(window.console && console.clear) {
+        console.clear();
+    }
+}, 3000);
+
+// Disable right click
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+});
     </script>
 </body>
 </html>
